@@ -10,22 +10,22 @@ namespace LearnSRSApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly DataContext _context;
-        private readonly IUserService _userService;
-        public UserController(IUserService userService, DataContext context)
+        private readonly IUserService _iuserService;
+        public UserController(IUserService iuserService, DataContext context)
         {
             _context = context;
-            _userService = userService;
+            _iuserService = iuserService;
         }
         [HttpGet("GetAllUser")]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
-            var users = _userService.GetAllUser();
+            var users = _iuserService.GetAllUser();
             return Ok(users);
         }
         [HttpGet("{id}")]
         public ActionResult GetUser(int id)
         {
-            var user = _userService.get(id);
+            var user = _iuserService.get(id);
             if (user == null)
             {
                 return NotFound();
@@ -35,14 +35,12 @@ namespace LearnSRSApi.Controllers
         [HttpPost]
         public ActionResult PostUser(User user)
         {
-            _userService.Create(user);
             return Ok();
 
         }
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            _userService.Delete(id);
             return NoContent();
         }
 
