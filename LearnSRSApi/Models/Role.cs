@@ -9,7 +9,7 @@ namespace LearnSRSApi.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoleId { get; set; }
         public string RoleName { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
 
         public List<User> User { get; set; }

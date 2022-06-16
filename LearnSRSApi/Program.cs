@@ -1,5 +1,5 @@
 using LearnSRSApi.Data;
-using LearnSRSApi.System.Users;
+using LearnSRSApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

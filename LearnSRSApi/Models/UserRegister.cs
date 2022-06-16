@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LearnSRSApi.System
+namespace LearnSRSApi.Models
 {
     public class UserRegister
     {

@@ -1,7 +1,5 @@
 ﻿using LearnSRSApi.Data;
 using LearnSRSApi.Models;
-using LearnSRSApi.System;
-using LearnSRSApi.System.Users;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,18 +16,35 @@ namespace LearnSRSApi.Controllers
             _context = context;
             _userService = userService;
         }
-
-        [HttpGet("getAll")]
+        [HttpGet("GetAllUser")]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
             var users = _userService.GetAllUser();
             return Ok(users);
         }
-        [HttpPost("register")]
-        public IActionResult Register(UserRegister request)
+        [HttpGet("{id}")]
+        public ActionResult GetUser(int id)
         {
-            _userService.AddUser(request);
-            return Ok(new { message = "User created" });
+            var user = _userService.get(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
         }
+        [HttpPost]
+        public ActionResult PostUser(User user)
+        {
+            _userService.Create(user);
+            return Ok();
+
+        }
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            _userService.Delete(id);
+            return NoContent();
+        }
+
     }
 }
