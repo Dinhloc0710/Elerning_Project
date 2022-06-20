@@ -47,20 +47,34 @@ namespace LearnSRSApi.Models
 
     public void ForgotPassword(string email)
     {
-        throw new NotImplementedException();
-    }
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            user.PasswordResetToken = CreateRandomToken();
+            user.ResetTokenExpires = DateTime.Now.AddDays(1);
+            _context.SaveChanges();
+        }
 
  
 
     public IEnumerable<User> GetAllUser()
     {
             return _context.Users.ToList();
-        }
+    }
 
     public void Login(UserLogin request)
     {
-        throw new NotImplementedException();
-    }
+            var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+            if (user == null)
+            {
+            }
+
+            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            {
+            }
+
+            if (user.VerifiedAt == null)
+            {
+            }
+        }
 
     public void UpdateUser(User user, int id)
     {

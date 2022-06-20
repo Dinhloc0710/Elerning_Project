@@ -44,5 +44,18 @@ namespace LearnSRSApi.Controllers
             return NoContent();
         }
 
+        [HttpPost("login")]
+        public IActionResult Login(UserLogin request)
+        {
+
+            _iuserService.Login(request);
+            return Ok(new { message = "Đăng nhập thành công !" });
+        }
+        [HttpPost("register")]
+        public IActionResult Register(UserRegister request)
+        {
+            _iuserService.AddUser(request);
+            return Ok(new { message = "Đăng ký thành công" });
+        }
     }
 }
