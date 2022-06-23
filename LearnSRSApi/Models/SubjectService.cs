@@ -11,27 +11,32 @@ namespace LearnSRSApi.Models
         }
         public void Create(Subject s)
         {
-            throw new NotImplementedException();
+            _context.Subjects.Add(s);
+            _context.SaveChanges();
         }
 
         public void Delete(int SubjectId)
         {
-            throw new NotImplementedException();
+            var p = _context.Subjects.FirstOrDefault(c => c.SubjectId == SubjectId);
+
+            _context.Subjects.Remove(p);
+            _context.SaveChanges();
         }
 
         public Subject Get(int SubjectId)
         {
-            throw new NotImplementedException();
+            return _context.Subjects.FirstOrDefault(x => x.SubjectId == SubjectId);
         }
 
         public IEnumerable<Subject> getAll()
         {
-            throw new NotImplementedException();
+            return _context.Subjects.ToList();
         }
 
         public void Update(Subject s)
         {
-            throw new NotImplementedException();
+            _context.Subjects.Update(s);
+            _context.SaveChanges();
         }
     }
 }
